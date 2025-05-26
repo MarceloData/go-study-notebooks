@@ -1,0 +1,22 @@
+version: '3'
+
+tasks:
+  run:
+    desc: Run code from a dynamic directory
+    cmds:
+      - |
+        if [ -z "{{.dir}}" ]; then
+          echo "Please provide a directory: task run dir=your_directory"
+          exit 1
+        fi
+        cd {{.dir}} && go run .
+
+  test:
+    desc: Run tests from a dynamic directory
+    cmds:
+      - |
+        if [ -z "{{.dir}}" ]; then
+          echo "Please provide a directory: task test dir=your_directory"
+          exit 1
+        fi
+        cd {{.dir}} && go test ./...
